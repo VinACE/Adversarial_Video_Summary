@@ -3,6 +3,7 @@
 import argparse
 from pathlib import Path
 import pprint
+import os 
 
 project_dir = Path(__file__).resolve().parent
 dataset_dir = str(Path('./data1/jysung710/tmp_sum/360video/').resolve())
