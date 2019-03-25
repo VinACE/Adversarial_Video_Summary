@@ -5,10 +5,10 @@ from pathlib import Path
 import pprint
 
 project_dir = Path(__file__).resolve().parent
-dataset_dir = Path('./data1/jysung710/tmp_sum/360video/').resolve()
+dataset_dir = str(Path('./data1/jysung710/tmp_sum/360video/').resolve())
 video_list = ['360airballoon', '360parade', '360rowing', '360scuba', '360wedding']
-save_dir = Path('./data1/jmcho/SUM_GAN/')
-score_dir = Path('./data1/common_datasets/tmp_sum/360video/results/SUM-GAN/')
+save_dir = str(Path('./data1/jmcho/SUM_GAN/'))
+score_dir = str(Path('./data1/common_datasets/tmp_sum/360video/results/SUM-GAN/'))
 
 
 def str2bool(v):
