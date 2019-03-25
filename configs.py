@@ -31,8 +31,8 @@ class Config(object):
 
     def set_dataset_dir(self, video_type='360airballon'):
         if self.preprocessed:
-            # self.video_root_dir = dataset_dir.joinpath('resnet101_feature', video_type, self.mode)
-            self.video_root_dir = str( dataset_dir + 'resnet101_feature/' + video_type + self.mode)
+            self.video_root_dir = dataset_dir.joinpath('resnet101_feature', video_type, self.mode)
+            # self.video_root_dir = str( dataset_dir + 'resnet101_feature/' + video_type + self.mode)
         else:
             self.video_root_dir = dataset_dir.joinpath('video_subshot', video_type, 'test')
         self.save_dir = str(save_dir + video_type)
