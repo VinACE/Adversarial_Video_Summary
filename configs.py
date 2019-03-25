@@ -38,7 +38,7 @@ class Config(object):
         self.save_dir = str(save_dir + video_type)
         self.log_dir = self.save_dir
         # self.ckpt_path = self.save_dir.joinpath(f'epoch-{self.epoch}.pkl')
-        self.ckpt_path = str(self.save_dir + 'epoch-' + self.epoch + '.pkl')
+        self.ckpt_path = str(self.save_dir + 'epoch-' + str(self.epoch) + '.pkl')
         self.score_dir = score_dir
 
     def __repr__(self):
