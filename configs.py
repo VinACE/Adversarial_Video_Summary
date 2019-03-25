@@ -35,7 +35,7 @@ class Config(object):
             self.video_root_dir = str( dataset_dir + 'resnet101_feature/' + video_type + self.mode)
         else:
             self.video_root_dir = dataset_dir.joinpath('video_subshot', video_type, 'test')
-        self.save_dir = save_dir.joinpath(video_type)
+        self.save_dir = str(save_dir + video_type)
         self.log_dir = self.save_dir
         self.ckpt_path = self.save_dir.joinpath(f'epoch-{self.epoch}.pkl')
         self.score_dir = score_dir
