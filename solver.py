@@ -11,7 +11,8 @@ from tqdm import tqdm, trange
 from layers import Summarizer, Discriminator  # , apply_weight_norm
 from utils import TensorboardWriter
 # from feature_extraction import ResNetFeature
-
+width = 14
+precision = 4
 
 class Solver(object):
     def __init__(self, config=None, train_loader=None, test_loader=None):
@@ -53,6 +54,8 @@ class Solver(object):
                 + list(self.linear_compress.parameters()),
                 lr=self.config.discriminator_lr)
 
+
+
             self.model.train()
             # self.model.apply(apply_weight_norm)
 
@@ -62,7 +65,7 @@ class Solver(object):
             #     print('\t' + name + '\t', list(param.size()))
 
             # Tensorboard
-            self.writer = TensorboardWriter(self.config.log_dir)
+            self.writer = TensorboardWriter(self,self.config.log_dir)
 
     @staticmethod
     def freeze_model(module):
@@ -125,16 +128,18 @@ class Solver(object):
                 h_origin, original_prob = self.discriminator(original_features)
                 h_fake, fake_prob = self.discriminator(generated_features)
                 h_uniform, uniform_prob = self.discriminator(uniform_features)
-
+                # fake_p: {fake_prob.data[0]:{width}.{precision}}, uniform_p: {uniform_prob.data[0]:{width}.{precision}}"
+                s = f"original_p: {original_prob.data[0]:{width}.{precision}}, fake_p: {fake_prob.data[0]:{width}.{precision}}, uniform_p: {uniform_prob.data[0]:{width}.{precision}}")
+                print(s)
                 tqdm.write(
-                    f'original_p: {original_prob.data[0]:.3f}, fake_p: {fake_prob.data[0]:.3f}, uniform_p: {uniform_prob.data[0]:.3f}')
+                    f"original_p: {original_prob.data[0]:{width}.{precision}}, fake_p: {fake_prob.data[0]:{width}.{precision}}, uniform_p: {uniform_prob.data[0]:{width}.{precision}}")
 
                 reconstruction_loss = self.reconstruction_loss(h_origin, h_fake)
                 prior_loss = self.prior_loss(h_mu, h_log_variance)
                 sparsity_loss = self.sparsity_loss(scores)
 
                 tqdm.write(
-                    f'recon loss {reconstruction_loss.data[0]:.3f}, prior loss: {prior_loss.data[0]:.3f}, sparsity loss: {sparsity_loss.data[0]:.3f}')
+                    f'recon loss {reconstruction_loss.data[0]:0.3f}, prior loss: {prior_loss.data[0]:0.3f}, sparsity loss: {sparsity_loss.data[0]:0.3f}')
 
                 s_e_loss = reconstruction_loss + prior_loss + sparsity_loss
 
@@ -163,13 +168,13 @@ class Solver(object):
                 h_uniform, uniform_prob = self.discriminator(uniform_features)
 
                 tqdm.write(
-                    f'original_p: {original_prob.data[0]:.3f}, fake_p: {fake_prob.data[0]:.3f}, uniform_p: {uniform_prob.data[0]:.3f}')
+                    f'original_p: {original_prob.data[0]:0.3f}, fake_p: {fake_prob.data[0]:0.3f}, uniform_p: {uniform_prob.data[0]:0.3f}')
 
                 reconstruction_loss = self.reconstruction_loss(h_origin, h_fake)
                 gan_loss = self.gan_loss(original_prob, fake_prob, uniform_prob)
 
                 tqdm.write(
-                    f'recon loss {reconstruction_loss.data[0]:.3f}, gan loss: {gan_loss.data[0]:.3f}')
+                    f'recon loss {reconstruction_loss.data[0]:0.3f}, gan loss: {gan_loss.data[0]:0.3f}')
 
                 d_loss = reconstruction_loss + gan_loss
 
@@ -197,12 +202,12 @@ class Solver(object):
                     h_fake, fake_prob = self.discriminator(generated_features)
                     h_uniform, uniform_prob = self.discriminator(uniform_features)
                     tqdm.write(
-                        f'original_p: {original_prob.data[0]:.3f}, fake_p: {fake_prob.data[0]:.3f}, uniform_p: {uniform_prob.data[0]:.3f}')
+                        f'original_p: {original_prob.data[0]:0.3f}, fake_p: {fake_prob.data[0]:0.3f}, uniform_p: {uniform_prob.data[0]:0.3f}')
 
                     # Maximization
                     c_loss = -1 * self.gan_loss(original_prob, fake_prob, uniform_prob)
 
-                    tqdm.write(f'gan loss: {gan_loss.data[0]:.3f}')
+                    tqdm.write(f'gan loss: {gan_loss.data[0]:0.3f}')
 
                     self.c_optimizer.zero_grad()
                     c_loss.backward()
