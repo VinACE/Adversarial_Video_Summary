@@ -129,7 +129,7 @@ class Solver(object):
                 h_fake, fake_prob = self.discriminator(generated_features)
                 h_uniform, uniform_prob = self.discriminator(uniform_features)
                 # fake_p: {fake_prob.data[0]:{width}.{precision}}, uniform_p: {uniform_prob.data[0]:{width}.{precision}}"
-                s = f"original_p: {original_prob.data[0]:{width}.{precision}}, fake_p: {fake_prob.data[0]:{width}.{precision}}, uniform_p: {uniform_prob.data[0]:{width}.{precision}}")
+                s = f"original_p: {original_prob.data[0]:{width}.{precision}}, fake_p: {fake_prob.data[0]:{width}.{precision}}, uniform_p: {uniform_prob.data[0]:{width}.{precision}}"
                 print(s)
                 tqdm.write(
                     f"original_p: {original_prob.data[0]:{width}.{precision}}, fake_p: {fake_prob.data[0]:{width}.{precision}}, uniform_p: {uniform_prob.data[0]:{width}.{precision}}")
