@@ -37,7 +37,8 @@ class Config(object):
             self.video_root_dir = dataset_dir.joinpath('video_subshot', video_type, 'test')
         self.save_dir = str(save_dir + video_type)
         self.log_dir = self.save_dir
-        self.ckpt_path = self.save_dir.joinpath(f'epoch-{self.epoch}.pkl')
+        # self.ckpt_path = self.save_dir.joinpath(f'epoch-{self.epoch}.pkl')
+        self.ckpt_path = str(self.save_dir + 'epoch-' + self.epoch + '.pkl')
         self.score_dir = score_dir
 
     def __repr__(self):
