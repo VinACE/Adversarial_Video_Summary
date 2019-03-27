@@ -65,7 +65,7 @@ class Solver(object):
             #     print('\t' + name + '\t', list(param.size()))
 
             # Tensorboard
-            self.writer = TensorboardWriter(self,self.config.log_dir)
+            self.writer = TensorboardWriter(self.config.log_dir)
 
     @staticmethod
     def freeze_model(module):
