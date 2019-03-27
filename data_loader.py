@@ -17,6 +17,7 @@ class VideoData(Dataset):
         self.transform = transform
         self.with_name = with_name
         self.video_list = list(self.root.iterdir())
+        print("$$$$$$$$$$$$$$$$$$$checking the load functions")
         print(self.root,self.preprocessed,self.transform, self.with_name, self.video_list)
     def __len__(self):
         return len(self.video_list)
