@@ -7,7 +7,7 @@ import os
 
 project_dir = Path(__file__).resolve().parent
 dataset_dir = Path('/content/data1/jysung710/tmp_sum/360video/').resolve()
-video_list = ['360airballoon', '360parade', '360rowing', '360scuba', '360wedding']
+video_list = ['360airballoon']
 save_dir = Path('/content/data1/jmcho/SUM_GAN/')
 score_dir = Path('/content/data1/common_datasets/tmp_sum/360video/results/SUM-GAN/')
 
