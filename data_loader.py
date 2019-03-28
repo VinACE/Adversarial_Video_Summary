@@ -17,7 +17,8 @@ class VideoData(Dataset):
         self.transform = transform
         self.with_name = with_name
         self.video_list = list(self.root.iterdir())
-        pdb.set_trace()
+        # pdb.set_trace()
+        print(self.video_list)
     def __len__(self):
         return len(self.video_list)
 
@@ -49,3 +50,4 @@ def get_loader(root, mode):
 
 if __name__ == '__main__':
     pass
+
