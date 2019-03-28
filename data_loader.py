@@ -13,13 +13,14 @@ import pdb
 class VideoData(Dataset):
     def __init__(self, root, preprocessed=True, transform=resnet_transform, with_name=False):
         self.root = root
+        print(self.root)
         self.preprocessed = preprocessed
         self.transform = transform
         self.with_name = with_name
         self.video_list = list(self.root.iterdir())
         # pdb.set_trace()
         print("printing video list")
-        print(self.video_list)
+        print( self.video_list)
     def __len__(self):
         return len(self.video_list)
 
