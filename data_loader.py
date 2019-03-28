@@ -8,7 +8,7 @@ from pathlib import Path
 from feature_extraction import resnet_transform
 import h5py
 import numpy as np
-
+import pdb
 
 class VideoData(Dataset):
     def __init__(self, root, preprocessed=True, transform=resnet_transform, with_name=False):
@@ -17,8 +17,7 @@ class VideoData(Dataset):
         self.transform = transform
         self.with_name = with_name
         self.video_list = list(self.root.iterdir())
-        print("$$$$$$$$$$$$$$$$$$$checking the load functions")
-        print(self.root,self.preprocessed,self.transform, self.with_name, self.video_list)
+        pdb.set_trace()
     def __len__(self):
         return len(self.video_list)
 
