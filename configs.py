@@ -65,7 +65,8 @@ def get_config(parse=True, **optional_kwargs):
     parser.add_argument('--video_type', type=str, default='360airballoon')
 
     # Model
-    parser.add_argument('--input_size', type=int, default=2048)
+    # parser.add_argument('--input_size', type=int, default=2048)
+    parser.add_argument('--input_size', type=int, default=1024)
     parser.add_argument('--hidden_size', type=int, default=500)
     parser.add_argument('--num_layers', type=int, default=2)
     parser.add_argument('--summary_rate', type=float, default=0.3)
