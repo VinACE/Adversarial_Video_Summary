@@ -51,5 +51,6 @@ def get_loader(root, mode):
 
 
 if __name__ == '__main__':
-    pass
+    # pass
+    get_loader('', 'train')
 
