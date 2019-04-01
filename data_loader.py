@@ -52,5 +52,4 @@ def get_loader(root, mode):
 
 
 if __name__ == '__main__':
-    # pass
-    # get_loader('/content/Video_Captioning.pytorch/output/', 'train')
+    pass
