@@ -9,7 +9,7 @@ from feature_extraction import resnet_transform
 import h5py
 import numpy as np
 import pdb
-
+import ipdb
 class VideoData(Dataset):
     def __init__(self, root, preprocessed=True, transform=resnet_transform, with_name=False):
         self.root = root
@@ -29,8 +29,11 @@ class VideoData(Dataset):
             image_path = self.video_list[index]
             with h5py.File(image_path, 'r') as f:
                 if self.with_name:
+                    # ipdb.set_trace()
                     return torch.Tensor(np.array(f['pool5'])), image_path.name[:-5]
+                    
                 else:
+                    ipdb.set_trace()
                     return torch.Tensor(np.array(f['pool5']))
 
         else:
@@ -52,5 +55,5 @@ def get_loader(root, mode):
 
 if __name__ == '__main__':
     # pass
-    get_loader('', 'train')
+    get_loader('/content/Video_Captioning.pytorch/output/', 'train')
 
