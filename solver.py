@@ -7,7 +7,6 @@ from torch.autograd import Variable
 import numpy as np
 import json
 from tqdm import tqdm, trange
-
 from layers import Summarizer, Discriminator  # , apply_weight_norm
 from utils import TensorboardWriter
 # from feature_extraction import ResNetFeature
