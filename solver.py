@@ -64,7 +64,7 @@ class Solver(object):
             #     print('\t' + name + '\t', list(param.size()))
 
             # Tensorboard
-            import ipdb; ipdb.set_trace()
+            # import ipdb; ipdb.set_trace()
             self.writer = TensorboardWriter(self.config.log_dir)
 
     @staticmethod
