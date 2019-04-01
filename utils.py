@@ -9,7 +9,7 @@ class TensorboardWriter(SummaryWriter):
         https://github.com/lanpa/tensorboard-pytorch/blob/master/tensorboardX/writer.py
         Internally calls self.file_writer
         """
-        import ipdb; ipdb.set_trace()
+        # import ipdb; ipdb.set_trace()
         super(TensorboardWriter, self).__init__(logdir)
         self.logdir = self.file_writer.get_logdir()
 
