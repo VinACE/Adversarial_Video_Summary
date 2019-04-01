@@ -29,12 +29,10 @@ class VideoData(Dataset):
             image_path = self.video_list[index]
             with h5py.File(image_path, 'r') as f:
                 if self.with_name:
-                    # ipdb.set_trace()
-                    return torch.Tensor(np.array(f['pool5'])), image_path.name[:-5]
+                    return torch.Tensor(np.array(f['feats'])), image_path.name[:-5]
                     
                 else:
-                    ipdb.set_trace()
-                    return torch.Tensor(np.array(f['pool5']))
+                    return torch.Tensor(np.array(f['feats']))
 
         else:
             images = []
